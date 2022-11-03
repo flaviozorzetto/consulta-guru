@@ -1,0 +1,41 @@
+<header class='header-main'>
+  <div class='header-main-wrapper'>
+    <nav class='header-nav'>
+      <div class='header-nav-wrapper'>
+        <div class='header-nav-burguer'>
+          <div class='burguer-line'></div>
+          <div class='burguer-line'></div>
+          <div class='burguer-line'></div>
+        </div>
+        <LinkTo @route='consulta-cnpj' class='header-main-logo'>
+          <Svgs::Consulta />
+        </LinkTo>
+      </div>
+      <div class='header-nav-wrapper'>
+        <a
+          href='https://nfe.io/produtos/'
+          rel='noopener noreferrer'
+          target='_blank'
+        >Procurando uma API?</a>
+        <a
+          href='https://nfe.io/consulta-de-dados/'
+          rel='noopener noreferrer'
+          target='_blank'
+        >Consultas para sua empresa?</a>
+      </div>
+    </nav>
+    <div class='header-main-content'>
+      <h1>Consultar dados de CNPJ grátis online</h1>
+      <div class='header-input-container'>
+        <Input
+          id='cnpj-search'
+          class='header-input-bar'
+          @type='text'
+          @value={{this.cnpj}}
+          {{on 'input' this.handleCnpj}}
+          placeholder='Digite o número do CNPJ'
+        />
+      </div>
+    </div>
+  </div>
+</header>
