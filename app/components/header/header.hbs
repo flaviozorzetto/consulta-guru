@@ -25,17 +25,19 @@
       </div>
     </nav>
     <div class='header-main-content'>
-      <h1>Consultar dados de CNPJ grátis online</h1>
-      <div class='header-input-container'>
-        <Input
-          id='cnpj-search'
-          class='header-input-bar'
-          @type='text'
-          @value={{this.cnpj}}
-          {{on 'input' this.handleCnpj}}
-          placeholder='Digite o número do CNPJ'
-        />
-      </div>
+      {{#if @cnpjType}}
+        <h1>Consultar dados de CNPJ grátis online</h1>
+        <div class='header-input-container'>
+          <Input
+            id='cnpj-search'
+            class='header-input-bar'
+            @type='text'
+            @value={{this.cnpj}}
+            {{on 'input' this.handleCnpj}}
+            placeholder='Digite o número do CNPJ'
+          />
+        </div>
+      {{/if}}
     </div>
   </div>
 </header>

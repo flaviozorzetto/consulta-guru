@@ -1,5 +1,4 @@
 .header-main {
-  --box-shadow: 0 3px 10px rgb(0 0 0 / 30%);
   height: 150px;
   background: #009688;
   color: white;
@@ -11,10 +10,16 @@
 
 .header-main-wrapper {
   height: 100%;
-  width: 60%;
+  width: var(--width-wrapper);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+}
+
+@media screen and (max-width: 1110px) {
+  .header-main-wrapper {
+    width: 100%;
+  }
 }
 
 .header-main-content {

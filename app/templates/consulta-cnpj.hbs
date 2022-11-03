@@ -1,3 +1,5 @@
-{{page-title 'ConsultaCnpj'}}
+{{page-title 'Consulte dados de um CNPJ'}}
 
-<Header::Header @cnpj={{if @model.cnpj @model.cnpj null}} />
+<Header::Header @cnpjType={{true}} @cnpj={{if @model.cnpj @model.cnpj null}} />
+
+<DefaultContent::CnpjGratis />

@@ -1,0 +1,45 @@
+.main-cnpj {
+  min-height: 100vh;
+  background: rgba(0, 150, 136, 0.15);
+}
+
+.main-cnpj > .container {
+  --align-width: calc(var(--width-wrapper) - 460px);
+  width: var(--align-width);
+  margin: 0 auto;
+  padding: 7rem 0;
+}
+
+.main-cnpj > .container > .wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem 0;
+}
+
+.main-cnpj > .container > .wrapper section h2 {
+  color: #0080cc;
+  font-weight: 300;
+  font-size: 2.1rem;
+  line-height: 2rem;
+}
+
+.main-cnpj > .container > .wrapper section > p {
+  text-align: justify;
+  color: #1b2738;
+  font-weight: 400;
+  font-size: 1.1rem;
+  line-height: 1.7rem;
+  opacity: 0.8;
+}
+.main-cnpj > .container > .wrapper section > p:first-of-type {
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 650px) {
+  .main-cnpj > .container {
+    width: 90%;
+  }
+	.main-cnpj > .container > .wrapper section h2 {
+		text-align: justify;
+	}
+}
