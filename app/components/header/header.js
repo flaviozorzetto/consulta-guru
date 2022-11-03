@@ -33,7 +33,7 @@ const stringifyCpnj = (cnpj) => {
 
 export default class HeaderComponent extends Component {
   @tracked
-  cnpj = '';
+  cnpj = this.args.cnpj ? stringifyCpnj(this.args.cnpj) : '';
 
   @action
   handleCnpj(event) {
