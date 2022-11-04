@@ -96,3 +96,9 @@ footer main .footer-links ul li p {
 .footer-link-item a {
   padding-top: 0.6rem;
 }
+
+@media screen and (max-width: 1110px) {
+  footer main {
+    --width-wrapper: 90%;
+  }
+}

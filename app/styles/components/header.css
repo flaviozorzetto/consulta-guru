@@ -1,11 +1,37 @@
 .header-main {
+  --transition: 0.2s all ease-in-out;
   height: 150px;
   background: #009688;
   color: white;
   display: flex;
   flex-direction: column;
-  padding: 1rem 1rem 0 1rem;
-  box-shadow: var(--box-shadow);
+  padding-top: 1rem;
+  box-shadow: var(--header-shadow);
+  transition: var(--transition);
+}
+
+.header-main.header-fixed {
+  position: fixed;
+  height: 95px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding-top: 0.5rem;
+}
+
+.header-main.header-fixed ~ main {
+  padding-top: 12rem;
+}
+
+.header-main.header-fixed .header-input-container {
+  --height: 40px;
+}
+
+.header-main.header-fixed .header-main-content > h1 {
+  font-size: 1rem;
+  margin-top: 0.5rem;
 }
 
 .header-main-wrapper {
@@ -18,7 +44,7 @@
 
 @media screen and (max-width: 1110px) {
   .header-main-wrapper {
-    width: 100%;
+    --width-wrapper: 90%;
   }
 }
 
@@ -37,8 +63,9 @@
   transform: translate(-50%);
   height: var(--height);
   bottom: calc((var(--height) / 2) * -1);
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--header-shadow);
   padding: 0 2rem;
+  transition: var(--transition);
 }
 
 .header-input-bar {
@@ -62,7 +89,8 @@
   margin-top: 1rem;
   text-align: center;
   font-weight: 300;
-  font-size: 2em;
+  font-size: 2rem;
+	transition: var(--transition);
 }
 
 .header-nav {
