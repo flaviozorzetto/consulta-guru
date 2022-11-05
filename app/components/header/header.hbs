@@ -32,11 +32,12 @@
             id='cnpj-search'
             class='header-input-bar'
             @type='text'
-            @value={{this.cnpj}}
-            {{on 'input' this.handleCnpj}}
+            @value={{@cnpj}}
+            {{on 'input' @handleCnpj}}
             placeholder='Digite o número do CNPJ'
           />
         </div>
+        <button type='button' {{on 'click' @queryCnpj}}>QUERY QUERY</button>
       {{/if}}
     </div>
   </div>

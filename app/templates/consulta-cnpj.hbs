@@ -1,6 +1,16 @@
 {{page-title 'Consulte dados de um CNPJ'}}
-<Header::Header @cnpjType={{true}} @cnpj={{if @model.cnpj @model.cnpj null}} />
 
-<DefaultContent::CnpjGratis />
+<Header::Header
+  @cnpjType={{true}}
+  @cnpj={{this._cnpj}}
+  @handleCnpj={{this.handleCnpj}}
+  @queryCnpj={{this.queryCnpj}}
+/>
+
+{{#if this.receivedCnpj}}
+  <h2>Recebeu Cnpj</h2>
+{{else}}
+  <DefaultContent::CnpjGratis />
+{{/if}}
 
 <Footer::Footer />
