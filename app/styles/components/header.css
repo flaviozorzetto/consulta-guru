@@ -58,6 +58,7 @@
   width: 55%;
   position: absolute;
   border: 2px solid #009688;
+  border-radius: 3px;
   background-color: white;
   left: 50%;
   transform: translate(-50%);
@@ -66,6 +67,30 @@
   box-shadow: var(--header-shadow);
   padding: 0 2rem;
   transition: var(--transition);
+}
+
+.header-input-container.alert {
+  border: 2px solid #f44336 !important;
+  box-shadow: 0 2px 2px 0 rgb(244 67 54 / 19%), 0 0 0 1px rgb(244 67 54 / 10%);
+}
+
+.header-input-container.alert .header-input-bar {
+  color: #f44336;
+}
+
+.svg-alert {
+  --s: calc(var(--height) - 26px);
+  position: absolute;
+  left: 5px;
+  width: var(--s);
+  height: var(--s);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.svg-alert svg {
+  width: 100%;
+  fill: #f44336;
 }
 
 .header-input-bar {

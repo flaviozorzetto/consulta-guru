@@ -27,7 +27,10 @@
     <div class='header-main-content'>
       {{#if @cnpjType}}
         <h1>Consultar dados de CNPJ grátis online</h1>
-        <div class='header-input-container'>
+        <div class='header-input-container{{if @cnpjErrorState " alert"}}'>
+          {{#if @cnpjErrorState}}
+            <Svgs::SvgAlert />
+          {{/if}}
           <Input
             id='cnpj-search'
             class='header-input-bar'

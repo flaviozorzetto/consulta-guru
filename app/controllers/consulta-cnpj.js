@@ -72,18 +72,6 @@ const removeNonNumbers = (val) => {
   return val.replace(/[^0-9]/gi, '');
 };
 
-const validateCnpj = (cnpj) => {
-  if (!cnpj) return false;
-
-  const parsedCnpj = removeNonNumbers(cnpj);
-
-  if (parsedCnpj.length !== 14) {
-    return false;
-  }
-
-  return true;
-};
-
 const stringifyCpnj = (cnpj) => {
   if (cnpj != null) {
     const newCnpj = removeNonNumbers(cnpj).substring(0, 14);
@@ -116,6 +104,9 @@ export default class ConsultaCnpjController extends Controller {
   queryParams = ['cnpj'];
 
   @tracked
+  lastCnpjQueried = null;
+
+  @tracked
   loadingFetch = false;
 
   @tracked
@@ -127,57 +118,132 @@ export default class ConsultaCnpjController extends Controller {
   @tracked
   cnpjData = null;
 
+  @tracked
+  cnpjErrorState = false;
+
   set cnpjVal(val) {
     this.cnpj = stringifyCpnj(val);
   }
 
   queryCnpj = () => {
     if (!this.loadingFetch) {
-      if (validateCnpj(this.cnpj)) {
-        // key=AIzaSyDyToojxnr4s_2RXXRc-20H0zu9Py8u9Ks
-        // const urlBody = 'https://api.nfse.io/LegalEntities/Basicinfo/taxNumber/:cnpj';
-        // const cleanCnpj = this.cnpj.replace(/[^0-9]/gi, '');
-        // validate Url -> https://api.nfse.io/validate/LegalEntities/taxNumber/:cnpj
+      if (!this.validateCnpj(this.cnpj)) return (this.cnpjErrorState = true);
+      this.cnpjErrorState = false;
 
-        // fetch(urlBody + cleanCnpj).then(() => {
-        //   this.loadingFetch = false;
-        // });
+      const urlBody = 'https://api.nfse.io/LegalEntities/Basicinfo/taxNumber/';
+      const cleanCnpj = removeNonNumbers(this.cnpj);
+      const apiMode = true;
 
+      if (!(cleanCnpj == this.lastCnpjQueried)) {
         this.loadingFetch = true;
-        fetch('/api/cnpj.json')
+        fetch(apiMode ? urlBody + cleanCnpj : '/api/cnpj.json')
           .then((res) => {
+            this.lastCnpjQueried = cleanCnpj;
             return res.json();
           })
           .then((json) => {
-            for (let prop in json['data']) {
-              const entityData = json['data'][prop]['legalEntity'];
-              if (entityData) {
-                if (entityData['federalTaxNumber'] === this.cnpj) {
-                  this.receivedCnpj = true;
-                  entityData.address = parseAddress(entityData.address);
-                  const d = new Date(entityData.openedOn);
-                  entityData.openedOn = parseData(d);
-                  entityData.legalNature = parseLegalNature(
-                    entityData.legalNature
-                  );
-                  entityData.economicActivities = parseEconomicActivities(
-                    entityData.economicActivities
-                  );
-                  entityData.shareCapital = parseShareCapital(
-                    entityData.shareCapital
-                  );
-                  this.cnpjData = entityData;
+            if (json['data']) {
+              let foundCnpjLocal = false;
+              for (let prop in json['data']) {
+                const entityData = json['data'][prop]['legalEntity'];
+                if (entityData) {
+                  if (entityData['federalTaxNumber'] === this.cnpj) {
+                    entityData.address = parseAddress(entityData.address);
+                    const d = new Date(entityData.openedOn);
+                    entityData.openedOn = parseData(d);
+                    entityData.legalNature = parseLegalNature(
+                      entityData.legalNature
+                    );
+                    entityData.economicActivities = parseEconomicActivities(
+                      entityData.economicActivities
+                    );
+                    entityData.shareCapital = parseShareCapital(
+                      entityData.shareCapital
+                    );
+                    foundCnpjLocal = true;
+                    this.cnpjErrorState = false;
+                    this.receivedCnpj = true;
+                    this.cnpjData = entityData;
+                  }
                 }
               }
-            }
-            setTimeout(() => {
+              setTimeout(() => {
+                this.loadingFetch = false;
+              }, 2000);
+              if (!foundCnpjLocal) {
+                this.cnpjErrorState = true;
+              }
+            } else {
               this.loadingFetch = false;
-            }, 1000);
+              const entityData = json['legalEntity'];
+              entityData.address = parseAddress(entityData.address);
+              const d = new Date(entityData.openedOn);
+              entityData.openedOn = parseData(d);
+              entityData.legalNature = parseLegalNature(entityData.legalNature);
+              entityData.economicActivities = parseEconomicActivities(
+                entityData.economicActivities
+              );
+              entityData.shareCapital = parseShareCapital(
+                entityData.shareCapital
+              );
+              this.cnpjErrorState = false;
+              this.receivedCnpj = true;
+              this.cnpjData = entityData;
+            }
           });
-      } else {
-        alert('Cnpj invalido!');
       }
     }
+  };
+
+  validateCnpj = (cnpj) => {
+    if (!cnpj) return false;
+
+    cnpj = cnpj.replace(/[^\d]+/g, '');
+
+    if (cnpj == '') return false;
+
+    if (cnpj.length != 14) return false;
+
+    // Elimina CNPJs invalidos conhecidos
+    if (
+      cnpj == '00000000000000' ||
+      cnpj == '11111111111111' ||
+      cnpj == '22222222222222' ||
+      cnpj == '33333333333333' ||
+      cnpj == '44444444444444' ||
+      cnpj == '55555555555555' ||
+      cnpj == '66666666666666' ||
+      cnpj == '77777777777777' ||
+      cnpj == '88888888888888' ||
+      cnpj == '99999999999999'
+    )
+      return false;
+
+    // Valida DVs
+    let tamanho = cnpj.length - 2;
+    let numeros = cnpj.substring(0, tamanho);
+    let digitos = cnpj.substring(tamanho);
+    let soma = 0;
+    let pos = tamanho - 7;
+    for (let i = tamanho; i >= 1; i--) {
+      soma += numeros.charAt(tamanho - i) * pos--;
+      if (pos < 2) pos = 9;
+    }
+    let resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+    if (resultado != digitos.charAt(0)) return false;
+
+    tamanho = tamanho + 1;
+    numeros = cnpj.substring(0, tamanho);
+    soma = 0;
+    pos = tamanho - 7;
+    for (let i = tamanho; i >= 1; i--) {
+      soma += numeros.charAt(tamanho - i) * pos--;
+      if (pos < 2) pos = 9;
+    }
+    resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+    if (resultado != digitos.charAt(1)) return false;
+
+    return true;
   };
 
   @action
