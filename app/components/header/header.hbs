@@ -36,8 +36,14 @@
             {{on 'input' @handleCnpj}}
             placeholder='Digite o número do CNPJ'
           />
+          <button
+            type='button'
+            class='header-input-search'
+            {{on 'click' @queryCnpj}}
+          >
+            <Svgs::SearchIcon />
+          </button>
         </div>
-        <button type='button' {{on 'click' @queryCnpj}}>QUERY QUERY</button>
       {{/if}}
     </div>
   </div>

@@ -2,15 +2,24 @@
 
 <Header::Header
   @cnpjType={{true}}
-  @cnpj={{this._cnpj}}
+  @cnpj={{this.cnpj}}
   @handleCnpj={{this.handleCnpj}}
   @queryCnpj={{this.queryCnpj}}
 />
 
-{{#if this.receivedCnpj}}
-  <h2>Recebeu Cnpj</h2>
-{{else}}
-  <DefaultContent::CnpjGratis />
-{{/if}}
+<main class='main-cnpj'>
+  {{#if this.receivedCnpj}}
+
+    <DataContainer::CnpjGratis::CnpjGratis
+      @loadingState={{this.loadingFetch}}
+      @cnpjData={{this.cnpjData}}
+    />
+
+  {{else}}
+
+    <DefaultContent::CnpjGratis />
+
+  {{/if}}
+</main>
 
 <Footer::Footer />

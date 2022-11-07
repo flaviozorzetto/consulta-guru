@@ -179,6 +179,41 @@
         "name": "GOOGLE BRASIL INTERNET LTDA.",
         "blocked": false
       }
+    },
+    {
+      "legalEntity": {
+        "shareCapital": 0,
+        "address": {
+          "city": { "name": "Vitória Brasil", "code": "3556958" },
+          "country": "BRA",
+          "postalCode": "15713-000",
+          "number": "680",
+          "street": "R DR NUNES",
+          "district": "Vitória Brasil",
+          "state": "SP"
+        },
+        "phones": [{ "source": "RFB", "number": "36429000", "ddd": "17" }],
+        "economicActivities": [
+          {
+            "code": "8411600",
+            "description": "Administração pública em geral",
+            "isMain": true
+          }
+        ],
+        "legalNature": { "description": "Município", "code": "1244" },
+        "unit": "Headoffice",
+        "issuedOn": "2022-11-06T17:38:51Z",
+        "statusOn": "2005-11-03T00:00:00Z",
+        "openedOn": "1996-12-30T00:00:00Z",
+        "responsableEntity": "MUNICÍPIO DE VITORIA BRASIL",
+        "email": "GABINETE@VITORIABRASIL.SP.GOV.BR",
+        "status": "ATIVA",
+        "size": "DEMAIS",
+        "federalTaxNumber": "01.611.210/0001-89",
+        "name": "MUNICIPIO DE VITORIA BRASIL",
+        "tradeName": "PREFEITURA MUNICIPAL DE VITORIA BRASIL",
+        "blocked": false
+      }
     }
   ]
 }
