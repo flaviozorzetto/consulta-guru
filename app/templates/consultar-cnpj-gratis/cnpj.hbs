@@ -9,11 +9,16 @@
 />
 
 <main class='main-cnpj'>
-
-  <DataContainer::CnpjGratis::CnpjGratis
-    @loadingState={{this.loadingFetch}}
-    @cnpjData={{this.cnpjData}}
-  />
+	
+  {{#if this.cnpjErrorState}}
+    <DefaultContent::CnpjGratis />
+  {{else}}
+    <DataContainer::CnpjGratis::CnpjGratis
+      @loadingState={{this.loadingFetch}}
+      @cnpjData={{this.cnpjData}}
+      @limitReached={{this.limitReached}}
+    />
+  {{/if}}
 
 </main>
 

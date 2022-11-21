@@ -1,146 +1,188 @@
 <div class='container-content'>
   <div class='container-wrapper{{if @loadingState " align-center" ""}}'>
-    {{#if (if @loadingState false true)}}
-      <section class='content-item'>
-        <h2>{{@cnpjData.name}}</h2>
-        <div class='content-list-wrapper'>
-          <ul>
-            <li>
-              <div>
-                <h3>Nome Fantasia</h3>
-                <p>{{@cnpjData.tradeName}}</p>
-              </div>
-            </li>
-            <li>
-              <div>
-                <h3>Unidade</h3>
-                <p>{{@cnpjData.unit}}</p>
-              </div>
-            </li>
-            <li>
-              <div>
-                <h3>Número de Inscrição</h3>
-                <p>{{@cnpjData.federalTaxNumber}}</p>
-              </div>
-            </li>
-            <li>
-              <div>
-                <h3>Data de Abertura</h3>
-                <p>{{@cnpjData.openedOn}}</p>
-              </div>
-            </li>
-            <li>
-              <div>
-                <h3>Natureza Jurídica</h3>
-                <p>{{@cnpjData.legalNature}}</p>
-              </div>
-            </li>
-            <li>
-              <div>
-                <h3>Ente Federativo Responsável</h3>
-                <p>{{@cnpjData.responsableEntity}}</p>
-              </div>
-            </li>
-            <li>
-              <div>
-                <h3>Situação Cadastral</h3>
-                <p>{{@cnpjData.status}}</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
-      <section class='content-item'>
-        <h2>Endereço</h2>
-        <div class='wrapper-address'>
-          <div>
-            <p>{{@cnpjData.address.address_p1}}</p>
-            <p>{{@cnpjData.address.address_p2}}</p>
-            <p>{{@cnpjData.address.address_p3}}</p>
-          </div>
-          <div>
-            <iframe
-              title='maps'
-              loading='lazy'
-              allowfullscreen
-              referrerpolicy='no-referrer-when-downgrade'
-              src='https://www.google.com/maps/embed/v1/place?key=AIzaSyDyToojxnr4s_2RXXRc-20H0zu9Py8u9Ks
-    &q={{@cnpjData.address.address_p1}} {{@cnpjData.address.address_p2}}'
-            >
-            </iframe>
-          </div>
-        </div>
-      </section>
-      <section class='content-item'>
-        <h2>Contato</h2>
-        <div class='content-list-wrapper'>
-          <ul>
-            <li>
-              <div>
-                <h3>Email</h3>
-                <p>{{@cnpjData.email}}</p>
-              </div>
-            </li>
-            <li>
-              <div>
-                <h3>Telefone</h3>
-                {{#each @cnpjData.phones as |phone|}}
-                  <p>({{phone.ddd}}) {{phone.number}}</p>
-                {{/each}}
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
-      <section class='content-item'>
-        <h2>Atividades Econômicas</h2>
-        <div class='content-list-wrapper content-list-wrapper--column'>
-          <ul>
-            <li>
-              <div>
-                <h3>Atividade Econômica Primária</h3>
-                {{#if @cnpjData.economicActivities.main}}
+    {{#if @limitReached}}
 
-                  {{#each @cnpjData.economicActivities.main as |activity|}}
-                    <p>{{activity.code}} - {{activity.description}}</p>
-                  {{/each}}
+      <h2>Limite excedido de requisições para consulta de cnpj grátis!</h2>
 
-                {{else}}
-
-                  <p>
-                    Nenhuma atividade informada
-                  </p>
-
-                {{/if}}
-              </div>
-            </li>
-            <li>
-              <div>
-                <h3>Atividade Econômica Secundária</h3>
-                {{#if @cnpjData.economicActivities.secondary}}
-
-                  {{#each @cnpjData.economicActivities.secondary as |activity|}}
-                    <p>{{activity.code}} - {{activity.description}}</p>
-                  {{/each}}
-
-                {{else}}
-
-                  <p>
-                    Nenhuma atividade informada
-                  </p>
-
-                {{/if}}
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
-      <section class='content-item'>
-        <h2>Capital Social</h2>
-        <p>R$ {{@cnpjData.shareCapital}}</p>
-      </section>
     {{else}}
-      <div class='loader'></div>
+
+      {{#if (if @loadingState false true)}}
+
+        <section class='content-item'>
+          <h2>{{@cnpjData.name}}</h2>
+          <div class='content-list-wrapper'>
+            <ul>
+              <li>
+                <div>
+                  <h3>Nome Fantasia</h3>
+                  <p>{{@cnpjData.tradeName}}</p>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <h3>Unidade</h3>
+                  <p>{{@cnpjData.unit}}</p>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <h3>Número de Inscrição</h3>
+                  <p>{{@cnpjData.federalTaxNumber}}</p>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <h3>Data de Abertura</h3>
+                  <p>{{@cnpjData.openedOn}}</p>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <h3>Natureza Jurídica</h3>
+                  <p>{{@cnpjData.legalNature}}</p>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <h3>Ente Federativo Responsável</h3>
+                  <p>{{@cnpjData.responsableEntity}}</p>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <h3>Situação Cadastral</h3>
+                  <p>{{@cnpjData.status}}</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class='content-item'>
+          <h2>Endereço</h2>
+          <div class='wrapper-address'>
+            <div>
+              <p>{{@cnpjData.address.address_p1}}</p>
+              <p>{{@cnpjData.address.address_p2}}</p>
+              <p>{{@cnpjData.address.address_p3}}</p>
+            </div>
+            <div>
+              <iframe
+                title='maps'
+                loading='lazy'
+                allowfullscreen
+                referrerpolicy='no-referrer-when-downgrade'
+                src='https://www.google.com/maps/embed/v1/place?key=AIzaSyDyToojxnr4s_2RXXRc-20H0zu9Py8u9Ks
+    &q={{@cnpjData.address.address_p1}} {{@cnpjData.address.address_p2}}'
+              >
+              </iframe>
+            </div>
+          </div>
+        </section>
+        <section class='content-item'>
+          <h2>Contato</h2>
+          <div class='content-list-wrapper'>
+            <ul>
+              <li>
+                <div>
+                  <h3>E-mail</h3>
+                  <p>{{@cnpjData.email}}</p>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <h3>Telefone</h3>
+                  {{#each @cnpjData.phones as |phone|}}
+                    <p>({{phone.ddd}}) {{phone.number}}</p>
+                  {{/each}}
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class='content-item'>
+          <h2>Atividades Econômicas</h2>
+          <div
+            class='content-list-wrapper content-list-wrapper--column content-economic'
+          >
+            <ul>
+              <li>
+                <div>
+                  <h3>Atividade Econômica Primária</h3>
+                  {{#if @cnpjData.economicActivities.main}}
+
+                    {{#each @cnpjData.economicActivities.main as |activity|}}
+                      <p>{{activity.code}} - {{activity.description}}</p>
+                    {{/each}}
+
+                  {{else}}
+
+                    <p>
+                      Nenhuma atividade informada
+                    </p>
+
+                  {{/if}}
+                </div>
+              </li>
+              <li>
+                <div>
+                  <h3>Atividade Econômica Secundárias</h3>
+                  {{#if @cnpjData.economicActivities.secondary}}
+
+                    {{#each
+                      @cnpjData.economicActivities.secondary
+                      as |activity|
+                    }}
+                      <p>{{activity.code}} - {{activity.description}}</p>
+                    {{/each}}
+
+                  {{else}}
+
+                    <p>
+                      Nenhuma atividade informada
+                    </p>
+
+                  {{/if}}
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class='content-item'>
+          <h2>Capital Social</h2>
+          <p class='default-p'>R$ {{@cnpjData.shareCapital}}</p>
+        </section>
+        <section class='content-item'>
+          <h2>Sócios ou Administradores</h2>
+          {{#if @cnpjData.partners}}
+
+            <div class='content-list-wrapper content-list-wrapper--column'>
+              <ul>
+                {{#each @cnpjData.partners as |partner|}}
+                  <li>
+                    <div>
+                      <h3>{{partner.qualification.code}}
+                        -
+                        {{partner.qualification.description}}</h3>
+                      {{#each partner.names as |partnerName|}}
+                        <p>{{partnerName}}</p>
+                      {{/each}}
+                    </div>
+                  </li>
+                {{/each}}
+              </ul>
+            </div>
+
+          {{else}}
+
+            <p class='default-p'>Não existem Sócios ou Administradores!</p>
+
+          {{/if}}
+        </section>
+
+      {{else}}
+        <div class='loader'></div>
+      {{/if}}
+
     {{/if}}
   </div>
 </div>

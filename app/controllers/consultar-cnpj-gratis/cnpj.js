@@ -3,22 +3,52 @@ import { tracked } from '@glimmer/tracking';
 
 const parsers = {
   parseEntityData(entityData) {
-    entityData.address = parsers.parseAddress(entityData.address);
-    const d = new Date(entityData.openedOn);
-    entityData.openedOn = parsers.parseData(d);
-    entityData.legalNature = parsers.parseLegalNature(entityData.legalNature);
-    entityData.economicActivities = parsers.parseEconomicActivities(
+    entityData.address = this.parseAddress(entityData.address);
+    const date = new Date(entityData.openedOn);
+    entityData.openedOn = this.parseData(date);
+    entityData.legalNature = this.parseLegalNature(entityData.legalNature);
+    entityData.economicActivities = this.parseEconomicActivities(
       entityData.economicActivities
     );
-    entityData.shareCapital = parsers.parseShareCapital(
-      entityData.shareCapital
-    );
+    entityData.shareCapital = this.parseShareCapital(entityData.shareCapital);
     entityData.phones = entityData.phones.map((e) => {
       const obj = { ...e };
-      obj.number = parsers.parsePhone(obj.number);
+      obj.number = this.parsePhone(obj.number);
       return obj;
     });
+    entityData.email = entityData.email.toLowerCase();
+
+    if (entityData.partners)
+      entityData.partners = this.parsePartners(entityData.partners);
+
     return entityData;
+  },
+
+  parsePartners(partnersArr) {
+    const newPartnersArr = [];
+    partnersArr.forEach((e, i) => {
+      if (i == 0) {
+        newPartnersArr.push({
+          qualification: e.qualification,
+          names: [e.name],
+        });
+      } else {
+        let found = false;
+        newPartnersArr.forEach((partner) => {
+          if (partner.qualification.code === e.qualification.code) {
+            partner.names.push(e.name);
+            found = true;
+          }
+        });
+        if (!found) {
+          newPartnersArr.push({
+            qualification: e.qualification,
+            names: [e.name],
+          });
+        }
+      }
+    });
+    return newPartnersArr;
   },
 
   parseShareCapital(val) {
@@ -96,7 +126,7 @@ const parsers = {
   },
 };
 
-export default class ConsultaCnpjController extends IndexController {
+export default class ConsultarCnpjGratisController extends IndexController {
   @tracked
   lastCnpjQueried = null;
 
@@ -106,20 +136,30 @@ export default class ConsultaCnpjController extends IndexController {
   @tracked
   cnpjData = null;
 
+  @tracked
+  limitReached = false;
+
   queryCnpj = () => {
     if (!this.loadingFetch) {
-      if (!this.validateCnpj(this.cnpj)) return (this.cnpjErrorState = true);
+      if (!this.validateCnpj(this.cnpj)) {
+        this.cnpjErrorState = true;
+        return;
+      }
+      this.limitReached = false;
       this.cnpjErrorState = false;
 
       const urlBody = 'https://api.nfse.io/LegalEntities/Basicinfo/taxNumber/';
       const cleanCnpj = this.removeNonNumbers(this.cnpj);
-      const apiMode = false;
+      const apiMode = true;
 
       if (cleanCnpj !== this.lastCnpjQueried) {
         this.loadingFetch = true;
         fetch(apiMode ? urlBody + cleanCnpj : '/api/cnpj.json')
           .then((res) => {
             this.lastCnpjQueried = cleanCnpj;
+            if (res.status === 429) {
+              throw new Error('Limit reached');
+            }
             return res.json();
           })
           .then((json) => {
@@ -151,6 +191,13 @@ export default class ConsultaCnpjController extends IndexController {
               this.receivedCnpj = true;
               this.cnpjData = entityData;
             }
+          })
+          .catch((err) => {
+            console.log(err);
+            if (err.message === 'Limit reached') {
+              this.limitReached = true;
+            }
+            this.loadingFetch = false;
           });
       }
     }

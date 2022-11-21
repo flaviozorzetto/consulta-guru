@@ -21,7 +21,7 @@ export default class IndexController extends Controller {
   fetchCnpj() {
     if (this.validateCnpj(this.cnpj)) {
       this.router.transitionTo(
-        '/consulta-cnpj/' + this.removeNonNumbers(this.cnpj)
+        '/consultar-cnpj-gratis/' + this.removeNonNumbers(this.cnpj)
       );
     } else {
       this.cnpjErrorState = true;
