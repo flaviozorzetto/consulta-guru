@@ -110,6 +110,11 @@
   font-size: 1.1rem;
 }
 
+.header-input-bar:-webkit-autofill {
+  -webkit-text-fill-color: #009688;
+  -webkit-box-shadow: 0 0 0px 1000px rgb(255, 255, 255) inset;
+}
+
 .header-input-search {
   position: absolute;
   background: transparent;

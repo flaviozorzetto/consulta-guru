@@ -1,0 +1,17 @@
+{{page-title 'Consulte dados de um CNPJ'}}
+
+<Header::Header
+  @cnpjType={{true}}
+  @cnpj={{this.cnpj}}
+  @handleCnpj={{this.handleCnpj}}
+  @fetchCnpj={{this.fetchCnpj}}
+  @cnpjErrorState={{this.cnpjErrorState}}
+/>
+
+<main class='main-cnpj'>
+
+  <DefaultContent::CnpjGratis />
+
+</main>
+
+<Footer::Footer />
