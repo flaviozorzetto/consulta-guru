@@ -39,13 +39,20 @@
             {{on 'input' @handleCnpj}}
             placeholder='Digite o número do CNPJ'
           />
-          <button
-            type='button'
-            class='header-input-search'
-            {{on 'click' @fetchCnpj}}
-          >
-            <Svgs::SearchIcon />
-          </button>
+          {{#if @loadingState}}
+
+            <div class='loader search-loader'></div>
+
+          {{else}}
+
+            <button
+              type='button'
+              class='header-input-search'
+              {{on 'click' @fetchCnpj}}
+            >
+              <Svgs::SearchIcon />
+            </button>
+          {{/if}}
         </div>
       {{/if}}
     </div>

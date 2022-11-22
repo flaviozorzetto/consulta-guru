@@ -6,10 +6,11 @@
   @handleCnpj={{this.handleCnpj}}
   @fetchCnpj={{this.fetchCnpj}}
   @cnpjErrorState={{this.cnpjErrorState}}
+  @loadingState={{this.loadingFetch}}
 />
 
 <main class='main-cnpj'>
-	
+
   {{#if this.cnpjErrorState}}
     <DefaultContent::CnpjGratis />
   {{else}}

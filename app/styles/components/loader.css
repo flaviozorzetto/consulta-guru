@@ -1,11 +1,20 @@
 .loader {
-  --s: 120px;
-  border: 16px solid rgb(222, 222, 222);
-  border-top: 16px solid #02c2af;
+  --loader-size: 120px;
+  border: calc(var(--loader-size) / 6) solid rgb(222, 222, 222);
+  border-top: calc(var(--loader-size) / 6) solid #02c2af;
   border-radius: 50%;
-  width: var(--s);
-  height: var(--s);
+  width: var(--loader-size);
+  height: var(--loader-size);
   animation: spin 1.5s linear infinite;
+}
+
+.search-loader {
+  position: absolute;
+  --loader-size: 25px;
+  top: 50%;
+  right: 0;
+  translate: -10px -50%;
+  cursor: pointer;
 }
 
 @keyframes spin {
