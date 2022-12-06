@@ -90,6 +90,17 @@
   color: #f44336;
 }
 
+.header-input-container-wrapper {
+  display: flex;
+  padding-left: 40px;
+  gap: 0 1.4rem;
+  height: 100%;
+}
+
+.header-input-container-wrapper .header-input-bar {
+  width: 40%;
+}
+
 .svg-alert {
   --s: calc(var(--height) - 26px);
   position: absolute;

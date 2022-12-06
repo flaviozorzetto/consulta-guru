@@ -1,10 +1,12 @@
-{{page-title 'Consulte dados de um CNPJ'}}
+{{page-title 'Consulta'}}
 
 <Header::Header
-  @cnpjType={{true}}
-  @cnpj={{this.cnpj}}
-  @handleCnpj={{this.handleCnpj}}
-  @fetchCnpj={{this.fetchCnpj}}
+  @cpfType={{true}}
+  @cpf={{this.cpf}}
+  @date={{this.date}}
+  @handleCpf={{this.handleCpf}}
+  @handleDate={{this.handleDate}}
+  @fetchCpf={{this.fetchCpf}}
   @errorState={{this.errorState}}
   @loadingState={{this.loadingFetch}}
 />
@@ -13,13 +15,13 @@
 
   {{#if this.showDefaultContent}}
 
-    <DefaultContent::CnpjGratis />
+    <DefaultContent::CpfGratis />
 
   {{else}}
-	
-    <DataContainer::CnpjGratis::CnpjGratis
+
+    <DataContainer::CpfGratis::CpfGratis
       @loadingState={{this.loadingFetch}}
-      @cnpjData={{this.cnpjData}}
+      @cpfData={{this.cpfData}}
       @limitReached={{this.limitReached}}
     />
 

@@ -11,6 +11,9 @@ export default class ConsultarCnpjGratisRoute extends Route {
     if (args[0].cnpj && args[0].cnpj !== 'true') {
       controller.cnpjVal = args[0].cnpj;
       controller.queryCnpj();
+      if (!controller.validateCnpj(controller.cnpj)) {
+        controller.showDefaultContent = true;
+      }
     }
   }
 }

@@ -1,0 +1,22 @@
+{
+  "response": [
+    {
+      "naturalPerson": {
+        "birthOn": "2001-06-07T00:00:00Z",
+        "createdOn": "2022-12-02T10:43:43-03:00",
+        "status": "Regular",
+        "federalTaxNumber": "525.019.828-78",
+        "name": "ANA JULIA ALVES RODRIGUES"
+      }
+    },
+    {
+      "naturalPerson": {
+        "birthOn": "2003-11-28T00:00:00Z",
+        "createdOn": "2022-11-06T16:52:31-03:00",
+        "status": "Regular",
+        "federalTaxNumber": "517.745.828-80",
+        "name": "FLAVIO ESRENKO ZORZETTO"
+      }
+    }
+  ]
+}

@@ -128,6 +128,9 @@ const parsers = {
 
 export default class ConsultarCnpjGratisController extends IndexController {
   @tracked
+  showDefaultContent = false;
+
+  @tracked
   lastCnpjQueried = null;
 
   @tracked
@@ -142,11 +145,12 @@ export default class ConsultarCnpjGratisController extends IndexController {
   queryCnpj = () => {
     if (!this.loadingFetch) {
       if (!this.validateCnpj(this.cnpj)) {
-        this.cnpjErrorState = true;
+        this.errorState = true;
         return;
       }
+      this.showDefaultContent = false;
       this.limitReached = false;
-      this.cnpjErrorState = false;
+      this.errorState = false;
 
       const urlBody = 'https://api.nfse.io/LegalEntities/Basicinfo/taxNumber/';
       const cleanCnpj = this.removeNonNumbers(this.cnpj);
@@ -172,22 +176,22 @@ export default class ConsultarCnpjGratisController extends IndexController {
                   if (entityData['federalTaxNumber'] === this.cnpj) {
                     entityData = parsers.parseEntityData(entityData);
                     foundCnpjLocal = true;
-                    this.cnpjErrorState = false;
+                    this.errorState = false;
                     this.cnpjData = entityData;
                   }
                 }
               }
               setTimeout(() => {
                 this.loadingFetch = false;
-              }, 2000);
+              }, 1000);
               if (!foundCnpjLocal) {
-                this.cnpjErrorState = true;
+                this.errorState = true;
               }
             } else {
               // API ONLINE
               const entityData = parsers.parseEntityData(json['legalEntity']);
               this.loadingFetch = false;
-              this.cnpjErrorState = false;
+              this.errorState = false;
               this.receivedCnpj = true;
               this.cnpjData = entityData;
             }
@@ -197,6 +201,7 @@ export default class ConsultarCnpjGratisController extends IndexController {
             if (err.message === 'Limit reached') {
               this.limitReached = true;
             }
+            this.errorState = true;
             this.loadingFetch = false;
           });
       }

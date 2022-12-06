@@ -1,0 +1,17 @@
+{{page-title 'Consulta'}}
+
+<Header::Header
+  @cpfType={{true}}
+  @cpf={{this.cpf}}
+  @date={{this.date}}
+  @handleCpf={{this.handleCpf}}
+  @handleDate={{this.handleDate}}
+  @fetchCpf={{this.fetchCpf}}
+  @errorState={{this.errorState}}
+/>
+
+<main class='main-content'>
+  <DefaultContent::CpfGratis />
+</main>
+
+<Footer::Footer />

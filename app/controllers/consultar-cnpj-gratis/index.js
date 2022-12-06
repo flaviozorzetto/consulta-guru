@@ -11,7 +11,7 @@ export default class IndexController extends Controller {
   cnpj = null;
 
   @tracked
-  cnpjErrorState = false;
+  errorState = false;
 
   set cnpjVal(val) {
     this.cnpj = this.stringifyCpnj(val);
@@ -24,7 +24,7 @@ export default class IndexController extends Controller {
         '/consultar-cnpj-gratis/' + this.removeNonNumbers(this.cnpj)
       );
     } else {
-      this.cnpjErrorState = true;
+      this.errorState = true;
     }
   }
 

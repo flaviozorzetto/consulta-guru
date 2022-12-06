@@ -10,4 +10,10 @@ Router.map(function () {
   this.route('consultar-cnpj-gratis', function () {
     this.route('cnpj', { path: '/:cnpj' });
   });
+
+  this.route('consultar-cpf-gratis', function () {
+    this.route('cpf', { path: '/:cpf' }, function () {
+      this.route('data-nascimento', { path: '/:date' });
+    });
+  });
 });

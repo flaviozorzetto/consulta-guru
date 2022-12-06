@@ -1,0 +1,55 @@
+<div class='container-content'>
+  <div
+    class='container-wrapper container-wrapper--cpf{{if
+        @loadingState
+        " align-center"
+        ""
+      }}'
+  >
+    {{#if @limitReached}}
+
+      <h2>Limite excedido de requisições para consulta de cpf grátis!</h2>
+
+    {{else}}
+
+      {{#if (if @loadingState false true)}}
+
+        <section class='content-item'>
+          <h2>{{@cpfData.name}}</h2>
+          <div class='content-list-wrapper content-list-wrapper--column'>
+            <ul>
+              <li>
+                <div>
+                  <h3>N° do CPF:</h3>
+                  <p>{{@cpfData.federalTaxNumber}}</p>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <h3>Data de nascimento</h3>
+                  <p>{{@cpfData.birthOn}}</p>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <h3>Situação cadastral</h3>
+                  <p>{{@cpfData.status}}</p>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <h3>Ultima atualização</h3>
+                  <p>{{@cpfData.createdOn}}</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+      {{else}}
+        <div class='loader'></div>
+      {{/if}}
+
+    {{/if}}
+  </div>
+</div>

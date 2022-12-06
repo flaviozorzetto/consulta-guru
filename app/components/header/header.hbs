@@ -7,7 +7,7 @@
           <div class='burguer-line'></div>
           <div class='burguer-line'></div>
         </div>
-        <LinkTo @route='consultar-cnpj-gratis' class='header-main-logo'>
+        <LinkTo @route='index' class='header-main-logo'>
           <Svgs::Consulta />
         </LinkTo>
       </div>
@@ -25,10 +25,11 @@
       </div>
     </nav>
     <div class='header-main-content'>
+      {{! Cnpj Type }}
       {{#if @cnpjType}}
         <h1>Consultar dados de CNPJ grátis online</h1>
-        <div class='header-input-container{{if @cnpjErrorState " alert"}}'>
-          {{#if @cnpjErrorState}}
+        <div class='header-input-container{{if @errorState " alert"}}'>
+          {{#if @errorState}}
             <Svgs::SvgAlert />
           {{/if}}
           <Input
@@ -52,6 +53,49 @@
             >
               <Svgs::SearchIcon />
             </button>
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{! Cpf Type }}
+      {{#if @cpfType}}
+        <h1>Consultar número de CPF grátis online</h1>
+        <div class='header-input-container{{if @errorState " alert"}}'>
+          {{#if @errorState}}
+            <Svgs::SvgAlert />
+          {{/if}}
+          <div class='header-input-container-wrapper'>
+            <Input
+              class='header-input-bar'
+              @type='text'
+              id='cpf-input'
+              @value={{@cpf}}
+              {{on 'input' @handleCpf}}
+              placeholder='Digite o número do CPF'
+            />
+            <Input
+              class='header-input-bar'
+              id='date-input'
+              @type='text'
+              @value={{@date}}
+              {{on 'input' @handleDate}}
+              placeholder='Digite a data de nascimento'
+            />
+          </div>
+          {{#if @loadingState}}
+
+            <div class='loader search-loader'></div>
+
+          {{else}}
+
+            <button
+              type='button'
+              class='header-input-search'
+              {{on 'click' @fetchCpf}}
+            >
+              <Svgs::SearchIcon />
+            </button>
+
           {{/if}}
         </div>
       {{/if}}
