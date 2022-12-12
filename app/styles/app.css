@@ -1,3 +1,4 @@
+@import 'components/side-menu.css';
 @import 'components/header.css';
 @import 'components/main-content.css';
 @import 'components/footer.css';
@@ -39,6 +40,10 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.no-scroll {
+  overflow-y: hidden;
 }
 
 :root {

@@ -2,7 +2,11 @@
   <div class='header-main-wrapper'>
     <nav class='header-nav'>
       <div class='header-nav-wrapper logo-gap'>
-        <div class='header-nav-burguer'>
+        <div
+          class='header-nav-burguer'
+          role='button'
+          {{on 'click' this.sideMenu.clickMenu}}
+        >
           <div class='burguer-line'></div>
           <div class='burguer-line'></div>
           <div class='burguer-line'></div>

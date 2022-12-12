@@ -77,6 +77,7 @@ export default class ConsultarCpfGratisCpfDataNascimentoController extends Consu
           }
           if (err.message === 'Not Found') {
             this.errorState = true;
+            this.showDefaultContent = true;
           }
           this.loadingFetch = false;
         });

@@ -1,0 +1,73 @@
+{{#if this.sideMenu.open}}
+  <div
+    class='background-blur'
+    role='button'
+    onclick={{this.sideMenu.clickMenu}}
+  ></div>
+{{/if}}
+<aside class='side-menu{{if this.sideMenu.open " open"}}'>
+  <div class='header'>
+    <Svgs::Consulta @class='logo' />
+  </div>
+  <nav class='navigation-content'>
+    <ul>
+      <li>
+        <Svgs::Home />
+        <LinkTo @route='index'>
+          Início
+        </LinkTo>
+      </li>
+    </ul>
+    <ul class='{{if this.sideMenu.menuNav1 "expanded" "compact"}}'>
+      {{! template-lint-disable no-invalid-interactive }}
+      <li onclick={{this.sideMenu.clickNav1}}>
+        <Svgs::Search />
+        <p>Consultas</p>
+        <Svgs::Arrow />
+      </li>
+      <li>
+        <LinkTo @route='consultar-cnpj-gratis'>Consultar CNPJ</LinkTo>
+      </li>
+      <li>
+        <LinkTo @route='consultar-cpf-gratis'>Consultar CPF</LinkTo>
+      </li>
+      <li>
+        <LinkTo @route='index'>Consultar NFe</LinkTo>
+      </li>
+    </ul>
+    {{! template-lint-disable no-invalid-interactive }}
+    <ul
+      onclick={{this.sideMenu.clickNav2}}
+      class='{{if this.sideMenu.menuNav2 "expanded" "compact"}}'
+    >
+      <li>
+        <Svgs::Generator />
+        <p>Geradores</p>
+        <Svgs::Arrow />
+      </li>
+      <li>
+        <LinkTo @route='index'>Gerar CPF</LinkTo>
+      </li>
+      <li>
+        <LinkTo @route='index'>Gerar CNPJ</LinkTo>
+      </li>
+    </ul>
+    {{! template-lint-disable no-invalid-interactive }}
+    <ul
+      onclick={{this.sideMenu.clickNav3}}
+      class='{{if this.sideMenu.menuNav3 "expanded" "compact"}}'
+    >
+      <li>
+        <Svgs::Validation />
+        <p>Validadores</p>
+        <Svgs::Arrow />
+      </li>
+      <li>
+        <LinkTo @route='index'>Validar CPF</LinkTo>
+      </li>
+      <li>
+        <LinkTo @route='index'>Validar CNPJ</LinkTo>
+      </li>
+    </ul>
+  </nav>
+</aside>
