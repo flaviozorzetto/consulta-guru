@@ -16,4 +16,8 @@ Router.map(function () {
       this.route('data-nascimento', { path: '/:date' });
     });
   });
+
+  this.route('consultar-nfe-gratis', function () {
+    this.route('nfe', { path: '/:nfe' });
+  });
 });
