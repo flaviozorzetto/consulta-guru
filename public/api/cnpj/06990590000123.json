@@ -1,0 +1,100 @@
+{
+  "legalEntity": {
+    "shareCapital": 200000000,
+    "address": {
+      "city": {
+        "name": "São Paulo",
+        "code": "3550308"
+      },
+      "country": "BRA",
+      "postalCode": "04538-133",
+      "number": "3477",
+      "street": "Brigadeiro Faria Lima",
+      "streetSuffix": "Avenida",
+      "additionalInformation": "ANDAR 17A20 TSUL 2 17A20",
+      "district": "Itaim Bibi",
+      "state": "SP"
+    },
+    "phones": [
+      {
+        "source": "RFB",
+        "number": "23958400",
+        "ddd": "11"
+      }
+    ],
+    "economicActivities": [
+      {
+        "code": "6319400",
+        "description": "Portais provedores de conteúdo e outros serviços de informação na internet",
+        "isMain": true
+      },
+      {
+        "code": "7319004",
+        "description": "Consultoria em publicidade",
+        "isMain": false
+      },
+      {
+        "code": "4751201",
+        "description": "Comércio varejista especializado de equipamentos e suprimentos de informática",
+        "isMain": false
+      },
+      {
+        "code": "6202300",
+        "description": "Desenvolvimento e licenciamento de programas de computador customizáveis",
+        "isMain": false
+      },
+      {
+        "code": "6201501",
+        "description": "Desenvolvimento de programas de computador sob encomenda",
+        "isMain": false
+      },
+      {
+        "code": "6311900",
+        "description": "Tratamento de dados, provedores de serviços de aplicação e serviços de hospedagem na internet",
+        "isMain": false
+      },
+      {
+        "code": "6462000",
+        "description": "Holdings de instituições nãofinanceiras",
+        "isMain": false
+      }
+    ],
+    "legalNature": {
+      "description": "Sociedade Empresária Limitada",
+      "code": "2062"
+    },
+    "partners": [
+      {
+        "qualification": {
+          "description": "Sócio Pessoa Jurídica Domiciliado no Exterior",
+          "code": "37"
+        },
+        "name": "GOOGLE LLC"
+      },
+      {
+        "qualification": {
+          "description": "Sócio Pessoa Jurídica Domiciliado no Exterior",
+          "code": "37"
+        },
+        "name": "GOOGLE INTERNATIONAL LLC"
+      },
+      {
+        "qualification": {
+          "description": "Administrador",
+          "code": "05"
+        },
+        "name": "FABIO JOSE SILVA COELHO"
+      }
+    ],
+    "unit": "Headoffice",
+    "issuedOn": "2022-10-31T11:22:35Z",
+    "statusOn": "2004-09-01T00:00:00Z",
+    "openedOn": "2004-09-01T00:00:00Z",
+    "email": "GOOGLEBRASIL@GOOGLE.COM",
+    "status": "ATIVA",
+    "size": "DEMAIS",
+    "federalTaxNumber": "06.990.590/0001-23",
+    "name": "GOOGLE BRASIL INTERNET LTDA.",
+    "blocked": false
+  }
+}

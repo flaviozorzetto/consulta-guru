@@ -1,0 +1,80 @@
+{
+  "legalEntity": {
+    "shareCapital": 256300,
+    "address": {
+      "city": { "name": "Araucária", "code": "4101804" },
+      "country": "BRA",
+      "postalCode": "83707-160",
+      "number": "182",
+      "street": "Francisco da Costa Pina",
+      "streetSuffix": "Rua",
+      "district": "Thomaz Coelho",
+      "state": "PR"
+    },
+    "phones": [
+      { "source": "RFB", "number": "32257032", "ddd": "41" },
+      { "source": "RFB", "number": "32322408", "ddd": "41" }
+    ],
+    "economicActivities": [
+      {
+        "code": "7119799",
+        "description": "Atividades técnicas relacionadas à engenharia e arquitetura não especificadas anteriormente",
+        "isMain": true
+      },
+      {
+        "code": "4751201",
+        "description": "Comércio varejista especializado de equipamentos e suprimentos de informática",
+        "isMain": false
+      },
+      {
+        "code": "3312102",
+        "description": "Manutenção e reparação de aparelhos e instrumentos de medida, teste e controle",
+        "isMain": false
+      },
+      {
+        "code": "4752100",
+        "description": "Comércio varejista especializado de equipamentos de telefonia e comunicação",
+        "isMain": false
+      },
+      {
+        "code": "9512600",
+        "description": "Reparação e manutenção de equipamentos de comunicação",
+        "isMain": false
+      },
+      {
+        "code": "7739099",
+        "description": "Aluguel de outras máquinas e equipamentos comerciais e industriais não especificados anteriormente, sem operador",
+        "isMain": false
+      },
+      {
+        "code": "9511800",
+        "description": "Reparação e manutenção de computadores e de equipamentos periféricos",
+        "isMain": false
+      }
+    ],
+    "legalNature": {
+      "description": "Sociedade Empresária Limitada",
+      "code": "2062"
+    },
+    "partners": [
+      {
+        "qualification": {
+          "description": "Sócio-Administrador",
+          "code": "49"
+        },
+        "name": "PAULO CESAR DE LIMA"
+      }
+    ],
+    "unit": "Headoffice",
+    "issuedOn": "2022-11-01T10:57:26Z",
+    "statusOn": "2005-08-27T00:00:00Z",
+    "openedOn": "2000-04-19T00:00:00Z",
+    "email": "dam.cont@brturbo.com.br",
+    "status": "ATIVA",
+    "size": "EPP",
+    "federalTaxNumber": "03.778.130/0001-48",
+    "name": "EXEMPLO M. P. LTDA",
+    "tradeName": "EXEMPLO M. P.",
+    "blocked": false
+  }
+}
